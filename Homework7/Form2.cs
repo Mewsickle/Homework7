@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//студент Ким Алексей
 namespace Homework7
 {
     public partial class УгадайЧисло : Form
