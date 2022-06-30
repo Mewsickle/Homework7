@@ -59,10 +59,7 @@ namespace Homework7
             lblComputerNumber.Text = $"Получите число: {computerNumber}";
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             UpdateState(++userCount);
@@ -74,10 +71,18 @@ namespace Homework7
 
             else if(computerNumber < userNumber)
             {
-                MessageBox.Show("You died!");
-                userNumber = 0;
-                userCount = 0;
-                UpdateState(userNumber, rnd.Next(50));
+                MessageBox.Show("Вы проиграли!");
+                if (MessageBox.Show("Хотите сыграть еще?", "Удвоитель", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    userNumber = 0;
+                    userCount = 0;
+                    UpdateState(userNumber, rnd.Next(50));
+
+                }
+                else
+                {
+                    Close();
+                }
             }
 
         }
@@ -113,14 +118,30 @@ namespace Homework7
 
         }
 
-       
+        
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             userNumber = 0;
             userCount = 0;
             UpdateState(userNumber, rnd.Next(50));
+            ShowUI();
+            MessageBox.Show($"Получите число: {lblComputerNumber}", "Удвоитель", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+
+
+        }
+
+        private void ShowUI()
+        {
+            btnReset.Visible = true;
+            btnCommand1.Visible = true;
+            btnCommand2.Visible = true;
+            lblClickCount.Visible = true;
+            lblComputerNumber.Visible = true;
+            lblUserNumber.Visible = true;
+            buttonClose.Visible = false;
+            buttonNewGame.Visible = false;
         }
 
         private void CheckWin()
@@ -144,13 +165,49 @@ namespace Homework7
             }
         }
 
-        private void lblClickCount_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            userNumber = 0;
+            userCount = 0;
+            UpdateState(userNumber, rnd.Next(50));
+            ShowUI();
+            MessageBox.Show($"Получите число: {lblComputerNumber}", "Удвоитель", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы точно хотите выйти?", "Удвоитель", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (MessageBox.Show("Вы точно точно хотите выйти?", "Удвоитель", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    MessageBox.Show($"Бяка", "Удвоитель", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Close();
+
+                }
+                else
+                {
+
+
+                }
+
+            }
+            else
+            {
+                
+
+            }
+        }
+
+        private void Удвоитель_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void lblComputerNumber_Click(object sender, EventArgs e)
+        private void угадайЧислоToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            УгадайЧисло gameSwap1 = new УгадайЧисло();
+            gameSwap1.ShowDialog();
 
         }
     }
